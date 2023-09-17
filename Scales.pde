@@ -29,7 +29,7 @@ void draw() {
       fill(255,255,255);
       float textX = x + innerOctagonSize / 2;
       float textY = y + innerOctagonSize / 2;
-      textSize(70);
+      textSize(60);
       text("STOP", textX - 130, textY-20);
     }
   }
