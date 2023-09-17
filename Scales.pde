@@ -9,7 +9,7 @@ void draw() {
   int numRows = 8;
   int numCols = 8;
   int octagonSize = 100;
-  int innerOctagonSize = 90;
+  int innerOctagonSize = 93;
   int spacingX = 90; 
   int spacingY = 90; 
 
@@ -29,8 +29,8 @@ void draw() {
       fill(255,255,255);
       float textX = x + innerOctagonSize / 2;
       float textY = y + innerOctagonSize / 2;
-      textSize(74); // Adjust text size as needed
-      text("STOP", textX - 130, textY-20);
+      textSize(70); // Adjust text size as needed
+      text("STOP", textX - 124, textY-20);
     }
   }
 }
