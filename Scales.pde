@@ -1,63 +1,48 @@
 void setup() {
-  size(1200, 600);
+  background(0);
+  size(1200, 800);
 }
 
 void draw() {
-  //boolean shift = true;
-  //for (int y = 10; y<51; y+= 10){
-    //for (int x = 10; x <51; x += 10){
-      //if(shift == true){
-        //pushMatrix();
-        //translate(width*0.5, height*0.5);
-        //rotate(frameCount / 50.0);
-        //triangle(20,20,40,40,x,y);
-        //popMatrix();}
-      //else{
-        //pushMatrix();
-        //translate(width*0.5, height*0.5);
-        //rotate(frameCount / 50.0);
-        //triangle(20,20,40,40,x-10,y);
-        //popMatrix();}
-    //}
-    //if (shift == true)
-      //shift = false;
-    //else
-      //shift = true;
-  //}
-  //scale(10, 10);
-  //for (int y = 150; y<601; y+= 300)
-    //for (int x = 150; x <1200; x += 300)
-    for (int y = 10; y<590; y+= 55)
-      for (int x = 10; x <1190; x += 55)
-        scale(x,y);
-       
-  int diameter = 0;
-  float a = 155;
-  float b = 200;
-  noFill();
-  while(diameter < 100){
-  stroke(a,b,0);
-  ellipse(600,300,diameter,diameter);
-  diameter++;
-  a-=155/100.0;
-  b-=200/50.0;
+  background(0);
 
-  }  
- 
+  int numRows = 8;
+  int numCols = 8;
+  int octagonSize = 100;
+  int innerOctagonSize = 90;
+  int spacingX = 90; 
+  int spacingY = 90; 
+
+  
+  for (int i = 0; i < numRows; i++) {
+    for (int j = 0; j < numCols; j++) {
+      float x = j * (octagonSize + spacingX); 
+      float y = i * (octagonSize + spacingY); 
+      noStroke();
+      //white part
+      fill(255,255,255);
+      scales(x, y, octagonSize); 
+      //red part
+      fill(255,0,0);
+      scales(x, y, innerOctagonSize);
+      //text
+      fill(255,255,255);
+      float textX = x + innerOctagonSize / 2;
+      float textY = y + innerOctagonSize / 2;
+      textSize(74); // Adjust text size as needed
+      text("STOP", textX - 130, textY-20);
+    }
+  }
 }
 
-//void scale(int x, int y){
-void scale(int x, int y){
-  fill(49,250,183);
- 
-  //for (int y = 10; y<51; y+= 10){
-    //for (int x = 10; x <51; x += 10){
-  pushMatrix();
-  translate(width*0.5, height*0.5);
-  rotate(frameCount / 50.0);
-  //triangle(x+ 20,y+20,x+40,y+40,x,y);
-  bezier(x+20,y+20,10,110,280,150,x+280,y+280);
-  popMatrix();
-    //}
- // }
+void scales(float x, float y, float s) {
+  float angleOff = PI / 8.0;
+  beginShape();
+  for (int i = 0; i < 8; i++) {
+    float angle = angleOff + TWO_PI / 8 * i;
+    float xOffset = cos(angle) * s;
+    float yOffset = sin(angle) * s;
+    vertex(x + xOffset, y + yOffset);
+  }
+  endShape(CLOSE);
 }
